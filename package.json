@@ -12,7 +12,7 @@
   "commands": [
     {
       "name": "glucose",
-      "title": "Glucose",
+      "title": "Glucose Readings",
       "description": "Get your glucose readings from Dexcom",
       "mode": "view"
     },
