@@ -22,10 +22,13 @@ export default function FetchGlucoseData() {
     const fetchData = async () => {
       try {
         const sessionId = await LocalStorage.getItem<string>("sessionId");
-        const isNorthAmerica = await LocalStorage.getItem<boolean>("isNorthAmerica");
+        const isNorthAmerica =
+          await LocalStorage.getItem<boolean>("isNorthAmerica");
         if (!sessionId || !isNorthAmerica) {
           setLoadingState(LoadingState.Error);
-          setErrorMessage("Session ID or region not found, please authenticate.");
+          setErrorMessage(
+            "Session ID or region not found, please authenticate.",
+          );
           await showToast({
             style: Toast.Style.Failure,
             title: "Session ID or region not found",
@@ -35,11 +38,14 @@ export default function FetchGlucoseData() {
         }
 
         setLoadingState(LoadingState.Loading);
-        const response = await axios.post(isNorthAmerica ? usDexcomDataURL : dexcomDataURL, {
-          sessionId,
-          minutes: 1440,
-          maxCount: 200,
-        });
+        const response = await axios.post(
+          isNorthAmerica ? usDexcomDataURL : dexcomDataURL,
+          {
+            sessionId,
+            minutes: 1440,
+            maxCount: 200,
+          },
+        );
 
         if (response.status !== 200) {
           setLoadingState(LoadingState.Error);
@@ -89,7 +95,9 @@ export default function FetchGlucoseData() {
         <List.Item
           key={data.DT}
           title={`${data.Value} ${TREND_VALUE_MAPPING[data.Trend as keyof typeof TREND_VALUE_MAPPING]}`}
-          subtitle={new Date(parseInt(data.DT.match(/\d+/)?.[0] ?? "0", 10)).toLocaleString()}
+          subtitle={new Date(
+            parseInt(data.DT.match(/\d+/)?.[0] ?? "0", 10),
+          ).toLocaleString()}
         />
       ))}
     </List>
