@@ -3,7 +3,7 @@
   "name": "dexcom-reader",
   "title": "Dexcom Reader",
   "description": "Get your glucose readings from Dexcom",
-  "icon": "dexcom.png",
+  "icon": "glucometer.png",
   "author": "pablo_medina",
   "categories": [
     "Other"
