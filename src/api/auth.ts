@@ -6,7 +6,7 @@ import {
   usDexcomLoginURL,
   dexcomAuthenticateURL,
   dexcomLoginURL,
-} from "./constants";
+} from "../constants";
 import { LocalStorage } from "@raycast/api";
 import { showFailureToast } from "@raycast/utils";
 
@@ -40,7 +40,6 @@ export async function authenticateWithDexcom(
     await LocalStorage.setItem("sessionId", sessionId);
     return sessionId;
   } catch (error) {
-    console.error("Authentication error:", error);
     await showFailureToast({
       title: "Authentication Failed",
       message: String(error),
